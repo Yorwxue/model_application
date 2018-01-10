@@ -61,6 +61,7 @@ with tf.Graph().as_default():
 
     # Partially Restoring Models
     # variables_to_restore = slim.get_variables_to_restore(exclude=["v1"])
+    # variables_to_restore = slim.get_variables(scope="InceptionResnetV1")
 
     saver = tf.train.Saver(variables_to_restore)
     restorer = tf.train.Saver(variables_to_restore)
@@ -72,6 +73,18 @@ with tf.Graph().as_default():
         # print("Model Initialized")
 
         print("loadind model from %s" % model_path)
+        # check model file is exists
+        # ckpt = tf.train.get_checkpoint_state(model_path)
+        # if ckpt and ckpt.model_checkpoint_path:
+        #     restorer.restore(sess, model_path)
+        #     print("Model Restored")
+        # else:
+        #     print("Model file isn't exists")
+        #     # Initialize variables
+        #     sess.run(tf.global_variables_initializer())
+        #     sess.run(tf.local_variables_initializer())
+        #     print("Model Initialized")
+
         restorer.restore(sess, model_path)
         print("Model Restored")
 
